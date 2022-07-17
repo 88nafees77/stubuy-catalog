@@ -16,5 +16,5 @@ public interface UniversityDatabaseService {
 
   List<GetAllUniversityResponse> getAllUniversities();
 
-  UniversityResponse getUniversityInfo(Integer id);
+  UniversityResponse getUniversityInfo(Integer id) throws Exception;
 }

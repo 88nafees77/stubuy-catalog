@@ -29,6 +29,6 @@ public class BranchInfo {
   private String branch_Name;
 
   @ManyToOne
-  private CourseInfo courseInfo;
+  private CourseEntity courseEntity;
 
 }

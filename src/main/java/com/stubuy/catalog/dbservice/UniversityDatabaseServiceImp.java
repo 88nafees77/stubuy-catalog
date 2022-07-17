@@ -79,25 +79,30 @@ public class UniversityDatabaseServiceImp implements UniversityDatabaseService {
   }
 
   @Override
-  public UniversityResponse getUniversityInfo(Integer id) {
+  public UniversityResponse getUniversityInfo(Integer id) throws Exception {
     logger.info("request received to retrieve university info from database ", id);
-    Optional<UniversityEntity> universityEntity = universityRepository.findById(id);
-    List<UniversityAddressEntity> universityAddressEntities =
-        universityEntity.get().getAddressInfo();
-    List<UniversityAddress> universityAddresses = new ArrayList<>();
-    for (UniversityAddressEntity universityAddressEntity : universityAddressEntities) {
-      UniversityAddress universityAddress =
-          UniversityAddress.builder().setAddressLine1(universityAddressEntity.getAddressLine1())
-              .setAddressLine2(universityAddressEntity.getAddressLine2())
-              .setCityName(universityAddressEntity.getCityName())
-              .setState(universityAddressEntity.getState())
-              .setZipcode(universityAddressEntity.getZipcode()).build();
-      universityAddresses.add(universityAddress);
+    UniversityResponse universityResponse = null;
+    try {
+      Optional<UniversityEntity> universityEntity = universityRepository.findById(id);
+      List<UniversityAddressEntity> universityAddressEntities =
+          universityEntity.get().getAddressInfo();
+      List<UniversityAddress> universityAddresses = new ArrayList<>();
+      for (UniversityAddressEntity universityAddressEntity : universityAddressEntities) {
+        UniversityAddress universityAddress =
+            UniversityAddress.builder().setAddressLine1(universityAddressEntity.getAddressLine1())
+                .setAddressLine2(universityAddressEntity.getAddressLine2())
+                .setCityName(universityAddressEntity.getCityName())
+                .setState(universityAddressEntity.getState())
+                .setZipcode(universityAddressEntity.getZipcode()).build();
+        universityAddresses.add(universityAddress);
+      }
+      universityResponse =
+          UniversityResponse.builder().setUniversityId(universityEntity.get().getUniversity_id())
+              .setUniversityName(universityEntity.get().getUniversityName())
+              .setUniversityAddress(universityAddresses).build();
+    } catch (Exception exception) {
+      throw new Exception();
     }
-    UniversityResponse universityResponse =
-        UniversityResponse.builder().setUniversityId(universityEntity.get().getUniversity_id())
-            .setUniversityName(universityEntity.get().getUniversityName())
-            .setUniversityAddress(universityAddresses).build();
     logger.info("Successfully retrieve university info from database", id);
     return universityResponse;
   }

@@ -60,9 +60,11 @@ public class UniversityServiceImp implements UniversityService {
     try {
       universityResponse = universityDatabaseService.getUniversityInfo(id);
     } catch (Exception exception) {
+      universityResponse = new UniversityResponse();
       logger.error("failed to retrieve university {}", exception);
       universityResponse.setResponseCode(404);
       universityResponse.setResponseMessage("Failed To Retrieve University Info");
+      return universityResponse;
     }
     universityResponse.setResponseCode(200);
     universityResponse.setResponseMessage("University Retrieve Successfully");

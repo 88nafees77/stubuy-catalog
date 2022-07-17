@@ -35,7 +35,7 @@ public class BooksInfo {
   private float book_price;
 
   @ManyToOne
-  private CourseInfo courseInfo;
+  private CourseEntity courseEntity;
 
   @ManyToOne
   private UserInfo userInfo;

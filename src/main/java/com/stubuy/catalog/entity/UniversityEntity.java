@@ -14,6 +14,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UniversityEntity {
 
   @Id
@@ -36,6 +38,10 @@ public class UniversityEntity {
   @Cascade(CascadeType.ALL)
   @OneToMany(mappedBy = "universityEntity")
   private List<UniversityAddressEntity> addressInfo;
+
+  @Cascade(CascadeType.ALL)
+  @OneToMany(mappedBy = "universityEntity")
+  private List<CourseEntity> courseEntities;
 
 
 }
