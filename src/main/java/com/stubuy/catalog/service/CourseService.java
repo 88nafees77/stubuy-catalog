@@ -11,4 +11,6 @@ public interface CourseService {
   CourseResponse registerCourse(CourseRegisterRequest courseRegisterRequest);
 
   List<GetAllCourseResponse> getAllCourse();
+
+  CourseResponse getCourseInfo(Integer courseId);
 }

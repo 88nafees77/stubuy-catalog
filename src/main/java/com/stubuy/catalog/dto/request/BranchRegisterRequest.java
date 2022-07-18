@@ -1,5 +1,4 @@
-package com.stubuy.catalog.dto.response;
-
+package com.stubuy.catalog.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,14 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetAllCourseResponse {
-
-  private Integer courseId;
+public class BranchRegisterRequest {
 
   private Integer universityId;
 
-  private String courseName;
+  private Integer courseId;
 
-  private String universityName;
+  private String branchName;
 
 }

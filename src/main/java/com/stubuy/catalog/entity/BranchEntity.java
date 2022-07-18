@@ -1,6 +1,5 @@
 package com.stubuy.catalog.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,19 +12,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity()
+@Entity
 @Table(name = "branch_info")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class BranchInfo {
+public class BranchEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Integer branch_id;
+  private Integer branchId;
 
-  @Column(name = "branch_name")
   private String branch_Name;
 
   @ManyToOne

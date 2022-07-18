@@ -13,4 +13,6 @@ public interface CourseDatabaseService {
   CourseResponse saveCourseInfo(CourseRegisterRequest courseRegisterRequest) throws Exception;
 
   List<GetAllCourseResponse> getAllCourse() throws Exception;
+
+  CourseResponse getCourseByID(Integer courseId);
 }

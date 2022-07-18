@@ -9,15 +9,13 @@ import lombok.Setter;
 @Builder
 public class CourseRegisterRequest {
 
-  private Integer courseId;
-
   private Integer universityId;
 
   private String courseName;
 
   @Override
   public String toString() {
-    return "CourseRegisterRequest{" + "courseId=" + courseId + ", universityId=" + universityId
-        + ", courseName='" + courseName + '\'' + '}';
+    return "CourseRegisterRequest{" + "universityId=" + universityId + ", courseName='" + courseName
+        + '\'' + '}';
   }
 }

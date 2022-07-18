@@ -3,6 +3,7 @@ package com.stubuy.catalog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,14 @@ public class CourseApiController {
                   method = RequestMethod.GET)
   public List<GetAllCourseResponse> getAllCourse() {
     return courseService.getAllCourse();
+  }
+
+  @RequestMapping(value = "/course/{cid}",
+                  method = RequestMethod.GET)
+  public CourseResponse getCourseInfo(
+      @PathVariable("cid")
+          Integer courseId) {
+    return courseService.getCourseInfo(courseId);
   }
 
 

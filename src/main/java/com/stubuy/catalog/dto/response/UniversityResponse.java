@@ -22,6 +22,13 @@ public class UniversityResponse extends ResponseMessage {
 
   private List<UniversityAddress> universityAddress;
 
+
+  @Override
+  public String toString() {
+    return "UniversityResponse{" + "universityId=" + universityId + ", universityName='"
+        + universityName + '\'' + ", universityAddress=" + universityAddress + '}';
+  }
+
   public static UniversityResponseBuilder builder() {
     return new UniversityResponseBuilder();
   }

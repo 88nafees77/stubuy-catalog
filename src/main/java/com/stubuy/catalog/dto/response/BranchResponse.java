@@ -8,16 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-public class CourseResponse extends ResponseMessage {
+public class BranchResponse extends ResponseMessage {
 
-  private Integer courseId;
-
-  private String courseName;
-
+  private Integer branch_id;
+  private String branch_Name;
 
 }

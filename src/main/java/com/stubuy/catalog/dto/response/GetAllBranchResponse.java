@@ -1,7 +1,5 @@
 package com.stubuy.catalog.dto.response;
 
-import com.stubuy.catalog.dto.response.common.ResponseMessage;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,14 +8,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class CourseResponse extends ResponseMessage {
+public class GetAllBranchResponse {
 
-  private Integer courseId;
-
-  private String courseName;
-
+  private Integer branch_id;
+  private String branch_Name;
 
 }

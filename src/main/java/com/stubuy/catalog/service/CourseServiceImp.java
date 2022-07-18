@@ -40,12 +40,31 @@ public class CourseServiceImp implements CourseService {
 
   @Override
   public List<GetAllCourseResponse> getAllCourse() {
+    logger.info("request received to get all courses ");
     List<GetAllCourseResponse> responses = null;
     try {
       responses = courseDatabaseService.getAllCourse();
     } catch (Exception exception) {
+      logger.info("failed to retrieve all courses ", exception);
       return responses;
     }
     return responses;
+  }
+
+  @Override
+  public CourseResponse getCourseInfo(Integer courseId) {
+    logger.info("request received to get course info by id {} ", courseId);
+    CourseResponse courseResponse = null;
+    try {
+      courseResponse = courseDatabaseService.getCourseByID(courseId);
+      courseResponse.setResponseCode(200);
+      courseResponse.setResponseMessage("Course Info Retrieve Successfully");
+    } catch (Exception exception) {
+      courseResponse = new CourseResponse();
+      courseResponse.setResponseCode(400);
+      courseResponse.setResponseMessage("Failed to retrieve course info, course id doesn't exists");
+      logger.info("failed to retrieve course info {} ", exception.getMessage());
+    }
+    return courseResponse;
   }
 }
