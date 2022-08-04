@@ -3,6 +3,8 @@ package com.stubuy.catalog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import com.stubuy.catalog.dto.response.GetAllBranchResponse;
 import com.stubuy.catalog.service.BranchService;
 
 @RestController
+@CrossOrigin("*")
 public class BranchApiController {
 
   @Autowired
@@ -22,10 +25,12 @@ public class BranchApiController {
 
   @RequestMapping(value = "/register/branch",
                   method = RequestMethod.POST)
-  public BranchResponse registerBranch(
+  public ResponseEntity<BranchResponse> registerBranch(
       @RequestBody
           BranchRegisterRequest branchRegisterRequest) {
-    return branchService.registerBranch(branchRegisterRequest);
+    BranchResponse branchResponse = branchService.registerBranch(branchRegisterRequest);
+    return new ResponseEntity<>(branchService.registerBranch(branchRegisterRequest),
+        branchResponse.getResponseCode());
   }
 
   @RequestMapping(value = "/all/branch",

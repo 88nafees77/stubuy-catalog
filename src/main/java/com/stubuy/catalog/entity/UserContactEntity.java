@@ -1,5 +1,7 @@
 package com.stubuy.catalog.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,37 +9,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity()
-@Table(name = "book_info")
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity()
+@Table(name = "user_contact_info")
 @Getter
 @Setter
-public class BooksInfo {
+@Builder
+public class UserContactEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer book_id;
+  private Integer contactID;
 
-  @Column(name = "book_name")
-  private String books_name;
+  private String firstName;
 
-  @Column(name = "book_status")
-  private boolean book_status;
+  private String lastName;
 
-  @Column(name = "book_price")
-  private float book_price;
+  @Column(name = "createOn")
+  private Timestamp time;
+
+  private Integer Zipcode;
+
+  private String AddressLine1;
+
+  private String AddressLine2;
+
+  private String CityName;
+
+  private String State;
 
   @ManyToOne
-  private CourseEntity courseEntity;
-
-  @ManyToOne
-  private UserInfo userInfo;
+  private UserEntity userEntity;
 
 }

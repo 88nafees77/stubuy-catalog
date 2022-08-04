@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UniversityAddress {
+public class AddressRequest {
 
   @JsonProperty("AddressLine1")
   private String AddressLine1;
@@ -71,8 +71,8 @@ public class UniversityAddress {
       return this;
     }
 
-    public UniversityAddress build() {
-      return new UniversityAddress(AddressLine1, AddressLine2, CityName, State, Zipcode);
+    public AddressRequest build() {
+      return new AddressRequest(AddressLine1, AddressLine2, CityName, State, Zipcode);
     }
   }
 

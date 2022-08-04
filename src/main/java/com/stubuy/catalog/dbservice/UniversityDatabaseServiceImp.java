@@ -16,9 +16,6 @@ import com.stubuy.catalog.entity.UniversityEntity;
 import com.stubuy.catalog.repository.UniversityRepository;
 import com.stubuy.catalog.utils.EntityToResponseConverter;
 
-import brave.ScopedSpan;
-import brave.Tracer;
-import brave.Tracing;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -31,13 +28,10 @@ public class UniversityDatabaseServiceImp implements UniversityDatabaseService {
   @Override
   public UniversityResponse saveUniversityInfo(
       UniversityRegisterRequest universityRegisterRequest) {
-    Tracer tracer = Tracing.currentTracer();
-    ScopedSpan scopedSpan = tracer.startScopedSpan("database");
     log.info("request received to saved University info in Database {}",
         universityRegisterRequest.toString());
     UniversityEntity universityEntity = null;
     UniversityAddressEntity universityAddressEntity = null;
-    scopedSpan.tag("value", universityRegisterRequest.toString());
     try {
       ModelMapper modelMapper = new ModelMapper();
       universityEntity = modelMapper.map(universityRegisterRequest, UniversityEntity.class);
@@ -54,9 +48,8 @@ public class UniversityDatabaseServiceImp implements UniversityDatabaseService {
     } catch (Exception exception) {
       log.info(" failed to saved University records in Database ", exception);
       throw new RuntimeException(exception);
-    } finally {
-      scopedSpan.finish();
     }
+
   }
 
   @Override

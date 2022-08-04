@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.stubuy.catalog.dbservice.UniversityDatabaseService;
@@ -12,9 +13,6 @@ import com.stubuy.catalog.dto.request.UniversityRegisterRequest;
 import com.stubuy.catalog.dto.response.GetAllUniversityResponse;
 import com.stubuy.catalog.dto.response.UniversityResponse;
 
-import brave.ScopedSpan;
-import brave.Tracer;
-import brave.Tracing;
 
 @Service
 public class UniversityServiceImp implements UniversityService {
@@ -27,23 +25,19 @@ public class UniversityServiceImp implements UniversityService {
   @Override
   public UniversityResponse registerUniversity(
       UniversityRegisterRequest universityRegisterRequest) {
-    Tracer tracer = Tracing.currentTracer();
-    ScopedSpan scopedSpan = tracer.startScopedSpan("service");
     logger.info("request received to register university {} ", universityRegisterRequest);
     UniversityResponse universityResponse = null;
     try {
       universityResponse = universityDatabaseService.saveUniversityInfo(universityRegisterRequest);
-      scopedSpan.tag("response", universityResponse.toString());
     } catch (Exception exception) {
       assert false;
-      universityResponse.setResponseCode(404);
+      universityResponse.setResponseCode(HttpStatus.BAD_REQUEST);
       universityResponse.setResponseMessage("University Registration Failed");
       logger.error("Failed to register university {}", exception.getMessage());
       return universityResponse;
     }
-    universityResponse.setResponseCode(200);
+    universityResponse.setResponseCode(HttpStatus.OK);
     universityResponse.setResponseMessage("University Registration Successfully Completed");
-    scopedSpan.finish();
     return universityResponse;
   }
 
@@ -68,11 +62,11 @@ public class UniversityServiceImp implements UniversityService {
     } catch (Exception exception) {
       universityResponse = new UniversityResponse();
       logger.error("failed to retrieve university {}", exception.getMessage());
-      universityResponse.setResponseCode(404);
+      universityResponse.setResponseCode(HttpStatus.BAD_REQUEST);
       universityResponse.setResponseMessage("Failed To Retrieve University Info");
       return universityResponse;
     }
-    universityResponse.setResponseCode(200);
+    universityResponse.setResponseCode(HttpStatus.OK);
     universityResponse.setResponseMessage("University Retrieve Successfully");
     return universityResponse;
   }

@@ -7,9 +7,9 @@ import lombok.Getter;
 public class UniversityRegisterRequest {
 
   private String universityName;
-  private UniversityAddress universityAddress;
+  private AddressRequest universityAddress;
 
-  private UniversityRegisterRequest(String universityName, UniversityAddress universityAddress) {
+  private UniversityRegisterRequest(String universityName, AddressRequest universityAddress) {
     this.universityName = universityName;
     this.universityAddress = universityAddress;
   }
@@ -26,7 +26,7 @@ public class UniversityRegisterRequest {
 
   static class UniversityRegisterRequestBuilder {
     private String universityName;
-    private UniversityAddress universityAddress;
+    private AddressRequest universityAddress;
 
 
     public UniversityRegisterRequestBuilder setUniversityName(String universityName) {
@@ -35,7 +35,7 @@ public class UniversityRegisterRequest {
     }
 
     public UniversityRegisterRequestBuilder setUniversityAddress(
-        UniversityAddress universityAddress) {
+        AddressRequest universityAddress) {
       this.universityAddress = universityAddress;
       return this;
     }
@@ -45,6 +45,7 @@ public class UniversityRegisterRequest {
     }
 
   }
+
 
 }
 

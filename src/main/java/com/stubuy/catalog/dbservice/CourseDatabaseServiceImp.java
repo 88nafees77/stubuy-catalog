@@ -24,9 +24,6 @@ public class CourseDatabaseServiceImp implements CourseDatabaseService {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @Autowired
-  private UniversityDatabaseService universityService;
-
-  @Autowired
   private CourseRepository courseRepository;
 
   @Override
@@ -78,6 +75,27 @@ public class CourseDatabaseServiceImp implements CourseDatabaseService {
     } catch (Exception exception) {
       logger.info("failed to retrieve course info from db ", exception.getMessage());
       throw exception;
+    }
+  }
+
+  @Override
+  public List<GetAllCourseResponse> getAllCourseByUID(Integer uid) throws Exception {
+    try {
+      logger.info("request received to retrieve course info from db by university ID{} ",uid);
+      List<CourseEntity> courseEntities = courseRepository.findByUniversityEntity(UniversityEntity.builder().university_id(uid).build());
+      List<GetAllCourseResponse> getAllCourseResponses = new ArrayList<>();
+      for (CourseEntity course : courseEntities) {
+        GetAllCourseResponse response =
+            GetAllCourseResponse.builder().courseId(course.getCourseId())
+                .courseName(course.getCourseName())
+                .universityId(course.getUniversityEntity().getUniversity_id())
+                .universityName(course.getUniversityEntity().getUniversityName()).build();
+        getAllCourseResponses.add(response);
+      }
+      return getAllCourseResponses;
+    } catch (Exception exception) {
+      logger.info("failed to retrieve course info from db by university ID {} ", exception,uid);
+      throw new Exception();
     }
   }
 }

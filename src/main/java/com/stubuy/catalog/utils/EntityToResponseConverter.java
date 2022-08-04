@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.stubuy.catalog.dto.response.BranchResponse;
-import com.stubuy.catalog.dto.request.UniversityAddress;
+import com.stubuy.catalog.dto.request.AddressRequest;
 import com.stubuy.catalog.dto.response.CourseResponse;
 import com.stubuy.catalog.dto.response.UniversityResponse;
 import com.stubuy.catalog.entity.BranchEntity;
@@ -16,10 +16,10 @@ public class EntityToResponseConverter {
 
   public static UniversityResponse universityEntityToUniversityResponse(
       UniversityEntity universityEntity) {
-    List<UniversityAddress> universityAddressList = new ArrayList<>();
+    List<AddressRequest> universityAddressList = new ArrayList<>();
     for (UniversityAddressEntity addressEntity : universityEntity.getAddressInfo()) {
-      UniversityAddress universityAddress =
-          UniversityAddress.builder().setAddressLine1(addressEntity.getAddressLine1())
+      AddressRequest universityAddress =
+          AddressRequest.builder().setAddressLine1(addressEntity.getAddressLine1())
               .setAddressLine2(addressEntity.getAddressLine2())
               .setCityName(addressEntity.getCityName()).setState(addressEntity.getState())
               .setZipcode(addressEntity.getZipcode()).build();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.stubuy.catalog.dto.request.BranchRegisterRequest;
 import com.stubuy.catalog.dto.response.BranchResponse;
@@ -25,6 +26,7 @@ public class BranchDatabaseServiceImp implements BranchDatabaseService {
   private BranchRepository branchRepository;
 
   @Override
+  @Transactional
   public BranchResponse saveBranchInfo(BranchRegisterRequest branchRegisterRequest) {
     BranchEntity branchEntity = new BranchEntity();
     try {

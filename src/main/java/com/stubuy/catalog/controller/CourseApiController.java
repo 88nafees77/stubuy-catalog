@@ -3,6 +3,8 @@ package com.stubuy.catalog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import com.stubuy.catalog.dto.response.GetAllCourseResponse;
 import com.stubuy.catalog.service.CourseService;
 
 @RestController
+@CrossOrigin("*")
 public class CourseApiController {
 
   @Autowired
@@ -22,10 +25,11 @@ public class CourseApiController {
 
   @RequestMapping(value = "/register/course",
                   method = RequestMethod.POST)
-  public CourseResponse registerCourse(
+  public ResponseEntity<CourseResponse> registerCourse(
       @RequestBody
           CourseRegisterRequest courseRegisterRequest) {
-    return courseService.registerCourse(courseRegisterRequest);
+    CourseResponse courseResponse = courseService.registerCourse(courseRegisterRequest);
+    return new ResponseEntity<>(courseResponse, courseResponse.getResponseCode());
   }
 
   @RequestMapping(value = "/all/course",
@@ -34,14 +38,21 @@ public class CourseApiController {
     return courseService.getAllCourse();
   }
 
-  @RequestMapping(value = "/course/{cid}",
+  @RequestMapping(value = "/course/temp/{courseID}",
                   method = RequestMethod.GET)
   public CourseResponse getCourseInfo(
-      @PathVariable("cid")
+      @PathVariable("courseID")
           Integer courseId) {
     return courseService.getCourseInfo(courseId);
   }
 
+  @RequestMapping(value = "/course/{uiversityID}",
+                  method = RequestMethod.GET)
+  public List<GetAllCourseResponse> getCourseInfoByUniversity(
+      @PathVariable("uiversityID")
+          Integer uid) {
+    return courseService.getCourseInfoByUniversity(uid);
+  }
 
 
 }

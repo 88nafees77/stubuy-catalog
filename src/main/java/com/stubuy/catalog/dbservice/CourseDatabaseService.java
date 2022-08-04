@@ -15,4 +15,6 @@ public interface CourseDatabaseService {
   List<GetAllCourseResponse> getAllCourse() throws Exception;
 
   CourseResponse getCourseByID(Integer courseId);
+
+  List<GetAllCourseResponse> getAllCourseByUID(Integer uid) throws Exception;
 }

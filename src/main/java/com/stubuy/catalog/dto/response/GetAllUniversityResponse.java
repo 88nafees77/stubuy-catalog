@@ -2,7 +2,7 @@ package com.stubuy.catalog.dto.response;
 
 import java.util.List;
 
-import com.stubuy.catalog.dto.request.UniversityAddress;
+import com.stubuy.catalog.dto.request.AddressRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class GetAllUniversityResponse {
 
   private String universityName;
 
-  private List<UniversityAddress> universityAddress;
+  private List<AddressRequest> universityAddress;
 
   public static GetAllUniversityResponseBuilder builder() {
     return new GetAllUniversityResponseBuilder();
@@ -30,7 +30,7 @@ public class GetAllUniversityResponse {
 
     private String universityName;
 
-    private List<UniversityAddress> universityAddress;
+    private List<AddressRequest> universityAddress;
 
     public GetAllUniversityResponseBuilder setUniversityId(Integer universityId) {
       this.universityId = universityId;
@@ -43,7 +43,7 @@ public class GetAllUniversityResponse {
     }
 
     public GetAllUniversityResponseBuilder setUniversityAddress(
-        List<UniversityAddress> universityAddress) {
+        List<AddressRequest> universityAddress) {
       this.universityAddress = universityAddress;
       return this;
     }

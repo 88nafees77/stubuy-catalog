@@ -3,6 +3,7 @@ package com.stubuy.catalog.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.stubuy.catalog.dbservice.BranchDatabaseService;
@@ -24,12 +25,12 @@ public class BranchServiceImp implements BranchService {
     BranchResponse response = null;
     try {
       response = branchDatabaseService.saveBranchInfo(branchRegisterRequest);
-      response.setResponseCode(200);
+      response.setResponseCode(HttpStatus.OK);
       response.setResponseMessage("Branch Registration Successfully Completed");
     } catch (Exception exception) {
       log.error("failed to register branch info {} ", exception.getMessage());
       response = new BranchResponse();
-      response.setResponseCode(400);
+      response.setResponseCode(HttpStatus.BAD_REQUEST);
       response.setResponseMessage("Failed to Register Branch Info");
     }
     return response;

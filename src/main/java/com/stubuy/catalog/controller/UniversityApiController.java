@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import com.stubuy.catalog.dto.response.UniversityResponse;
 import com.stubuy.catalog.service.UniversityService;
 
 @RestController
+@CrossOrigin("*")
 public class UniversityApiController {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -27,10 +30,12 @@ public class UniversityApiController {
 
   @RequestMapping(value = "/register/university",
                   method = RequestMethod.POST)
-  public UniversityResponse registerUniversity(
+  public ResponseEntity<UniversityResponse> registerUniversity(
       @RequestBody
           UniversityRegisterRequest universityRegisterRequest) {
-    return universityService.registerUniversity(universityRegisterRequest);
+    UniversityResponse universityResponse =
+        universityService.registerUniversity(universityRegisterRequest);
+    return new ResponseEntity<>(universityResponse, universityResponse.getResponseCode());
   }
 
   @RequestMapping(value = "/all/university",

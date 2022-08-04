@@ -13,4 +13,6 @@ public interface CourseService {
   List<GetAllCourseResponse> getAllCourse();
 
   CourseResponse getCourseInfo(Integer courseId);
+
+  List<GetAllCourseResponse> getCourseInfoByUniversity(Integer uid);
 }
