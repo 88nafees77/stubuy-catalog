@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class BooksEntity {
 
   @Id
@@ -36,5 +38,9 @@ public class BooksEntity {
 
   @ManyToOne
   private UserEntity userEntity;
+
+  @ManyToOne
+  private BranchEntity branchEntity;
+
 
 }

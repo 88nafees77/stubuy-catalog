@@ -13,11 +13,13 @@ import lombok.Setter;
 @Builder
 public class BookRegisterRequest {
 
-  private String universityID;
+  private Integer universityId;
 
-  private String courseID;
+  private Integer courseId;
 
-  private String branchID;
+  private Integer branchId;
+
+  private String userId;
 
   private String bookName;
 

@@ -38,7 +38,7 @@ public class CourseApiController {
     return courseService.getAllCourse();
   }
 
-  @RequestMapping(value = "/course/temp/{courseID}",
+  @RequestMapping(value = "/get/course/{courseID}",
                   method = RequestMethod.GET)
   public CourseResponse getCourseInfo(
       @PathVariable("courseID")
@@ -46,12 +46,12 @@ public class CourseApiController {
     return courseService.getCourseInfo(courseId);
   }
 
-  @RequestMapping(value = "/course/{uiversityID}",
+  @RequestMapping(value = "/course/{universityID}",
                   method = RequestMethod.GET)
   public List<GetAllCourseResponse> getCourseInfoByUniversity(
-      @PathVariable("uiversityID")
-          Integer uid) {
-    return courseService.getCourseInfoByUniversity(uid);
+      @PathVariable("universityID")
+          Integer universityID) {
+    return courseService.getCourseInfoByUniversity(universityID);
   }
 
 

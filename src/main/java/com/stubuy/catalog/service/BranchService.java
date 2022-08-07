@@ -12,4 +12,5 @@ public interface BranchService {
 
   List<GetAllBranchResponse> getAllBranch();
 
+  List<GetAllBranchResponse> getBranchInfoByCourseId(Integer courseId);
 }

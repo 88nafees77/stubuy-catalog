@@ -2,6 +2,7 @@ package com.stubuy.catalog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import com.stubuy.catalog.dto.response.UserRegistrationResponse;
 import com.stubuy.catalog.service.UserService;
 
 @RestController
+@CrossOrigin("*")
 public class UserApiController {
 
   @Autowired

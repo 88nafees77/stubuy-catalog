@@ -29,8 +29,7 @@ public class BranchApiController {
       @RequestBody
           BranchRegisterRequest branchRegisterRequest) {
     BranchResponse branchResponse = branchService.registerBranch(branchRegisterRequest);
-    return new ResponseEntity<>(branchService.registerBranch(branchRegisterRequest),
-        branchResponse.getResponseCode());
+    return new ResponseEntity<>(branchResponse, branchResponse.getResponseCode());
   }
 
   @RequestMapping(value = "/all/branch",
@@ -39,12 +38,20 @@ public class BranchApiController {
     return branchService.getAllBranch();
   }
 
-  @RequestMapping(value = "/branch/{id}",
+  @RequestMapping(value = "/branch/{branchId}",
                   method = RequestMethod.GET)
   public BranchResponse getBranchInfo(
-      @PathVariable("id")
-          Integer courseId) {
+      @PathVariable("branchId")
+          Integer branchId) {
     return null;
+  }
+
+  @RequestMapping(value = "/branch/course/{courseId}",
+                  method = RequestMethod.GET)
+  public List<GetAllBranchResponse> getAllBranchByCourse(
+      @PathVariable("courseId")
+          Integer courseId) {
+    return branchService.getBranchInfoByCourseId(courseId);
   }
 
 

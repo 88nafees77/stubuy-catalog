@@ -15,7 +15,6 @@
     <name>stubuy-catalog</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <sleuth-zipkin.version>2.2.8.RELEASE</sleuth-zipkin.version>
         <release.train.version>2021.0.3</release.train.version>
         <java.version>11</java.version>
     </properties>
@@ -33,11 +32,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-            <version>${sleuth-zipkin.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>

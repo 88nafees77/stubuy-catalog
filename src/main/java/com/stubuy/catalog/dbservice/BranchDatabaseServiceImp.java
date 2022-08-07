@@ -14,6 +14,7 @@ import com.stubuy.catalog.dto.response.GetAllBranchResponse;
 import com.stubuy.catalog.entity.BranchEntity;
 import com.stubuy.catalog.entity.CourseEntity;
 import com.stubuy.catalog.repository.BranchRepository;
+import com.stubuy.catalog.repository.CourseRepository;
 import com.stubuy.catalog.utils.EntityToResponseConverter;
 
 @Component
@@ -24,6 +25,9 @@ public class BranchDatabaseServiceImp implements BranchDatabaseService {
 
   @Autowired
   private BranchRepository branchRepository;
+
+  @Autowired
+  private CourseRepository courseRepository;
 
   @Override
   @Transactional
@@ -48,6 +52,24 @@ public class BranchDatabaseServiceImp implements BranchDatabaseService {
     List<GetAllBranchResponse> responses = new ArrayList<>();
     try {
       List<BranchEntity> branchEntities = branchRepository.findAll();
+      for (BranchEntity branchEntity : branchEntities) {
+        GetAllBranchResponse branchResponse =
+            GetAllBranchResponse.builder().branch_id(branchEntity.getBranchId())
+                .branch_Name(branchEntity.getBranch_Name()).build();
+        responses.add(branchResponse);
+      }
+    } catch (Exception exception) {
+      throw new RuntimeException();
+    }
+    return responses;
+  }
+
+  @Override
+  public List<GetAllBranchResponse> getBranchInfoByCourseId(Integer courseId) {
+    List<GetAllBranchResponse> responses = new ArrayList<>();
+    try {
+      List<BranchEntity> branchEntities =
+          branchRepository.findByCourseEntity(courseRepository.getReferenceById(courseId));
       for (BranchEntity branchEntity : branchEntities) {
         GetAllBranchResponse branchResponse =
             GetAllBranchResponse.builder().branch_id(branchEntity.getBranchId())

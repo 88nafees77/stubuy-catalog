@@ -46,4 +46,9 @@ public class BranchServiceImp implements BranchService {
     }
     return responses;
   }
+
+  @Override
+  public List<GetAllBranchResponse> getBranchInfoByCourseId(Integer courseId) {
+    return branchDatabaseService.getBranchInfoByCourseId(courseId);
+  }
 }
