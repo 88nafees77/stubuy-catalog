@@ -7,5 +7,5 @@ import com.stubuy.catalog.entity.UniversityEntity;
 
 @Repository
 public interface UniversityRepository extends JpaRepository<UniversityEntity, Integer> {
-
+	public UniversityEntity findByUniversityId(Integer universityId);
 }
