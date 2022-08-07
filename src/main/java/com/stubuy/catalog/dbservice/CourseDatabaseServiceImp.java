@@ -35,7 +35,7 @@ public class CourseDatabaseServiceImp implements CourseDatabaseService {
     try {
       courseEntity.setCourseName(courseRegisterRequest.getCourseName());
       courseEntity.setUniversityEntity(
-          UniversityEntity.builder().university_id(courseRegisterRequest.getUniversityId())
+          UniversityEntity.builder().universityId(courseRegisterRequest.getUniversityId())
               .build());
       courseEntity = courseRepository.save(courseEntity);
       return EntityToResponseConverter.courseEntityToCourseResponse(courseEntity);
@@ -55,7 +55,7 @@ public class CourseDatabaseServiceImp implements CourseDatabaseService {
         GetAllCourseResponse response =
             GetAllCourseResponse.builder().courseId(course.getCourseId())
                 .courseName(course.getCourseName())
-                .universityId(course.getUniversityEntity().getUniversity_id())
+                .universityId(course.getUniversityEntity().getUniversityId())
                 .universityName(course.getUniversityEntity().getUniversityName()).build();
         getAllCourseResponses.add(response);
       }
@@ -82,13 +82,13 @@ public class CourseDatabaseServiceImp implements CourseDatabaseService {
   public List<GetAllCourseResponse> getAllCourseByUID(Integer uid) throws Exception {
     try {
       logger.info("request received to retrieve course info from db by university ID{} ",uid);
-      List<CourseEntity> courseEntities = courseRepository.findByUniversityEntity(UniversityEntity.builder().university_id(uid).build());
+      List<CourseEntity> courseEntities = courseRepository.findByUniversityEntity(UniversityEntity.builder().universityId(uid).build());
       List<GetAllCourseResponse> getAllCourseResponses = new ArrayList<>();
       for (CourseEntity course : courseEntities) {
         GetAllCourseResponse response =
             GetAllCourseResponse.builder().courseId(course.getCourseId())
                 .courseName(course.getCourseName())
-                .universityId(course.getUniversityEntity().getUniversity_id())
+                .universityId(course.getUniversityEntity().getUniversityId())
                 .universityName(course.getUniversityEntity().getUniversityName()).build();
         getAllCourseResponses.add(response);
       }

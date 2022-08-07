@@ -61,7 +61,7 @@ public class UniversityDatabaseServiceImp implements UniversityDatabaseService {
     for (UniversityEntity info : universityEntityList) {
       GetAllUniversityResponse universityResponse =
           modelMapper.map(info, GetAllUniversityResponse.class);
-      universityResponse.setUniversityId(info.getUniversity_id());
+      universityResponse.setUniversityId(info.getUniversityId());
       universityResponses.add(universityResponse);
     }
     log.info("Successfully retrieve universities info from database");

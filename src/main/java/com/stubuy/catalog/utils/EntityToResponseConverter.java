@@ -25,7 +25,7 @@ public class EntityToResponseConverter {
               .setZipcode(addressEntity.getZipcode()).build();
       universityAddressList.add(universityAddress);
     }
-    return UniversityResponse.builder().setUniversityId(universityEntity.getUniversity_id())
+    return UniversityResponse.builder().setUniversityId(universityEntity.getUniversityId())
         .setUniversityName(universityEntity.getUniversityName())
         .setUniversityAddress(universityAddressList).build();
   }

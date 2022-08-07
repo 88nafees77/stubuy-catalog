@@ -30,7 +30,7 @@ public class UniversityEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer university_id;
+  private Integer universityId;
 
   @Column(name = "university_name")
   private String universityName;
