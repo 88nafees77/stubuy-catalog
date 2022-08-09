@@ -18,7 +18,11 @@
         <release.train.version>2021.0.3</release.train.version>
         <java.version>11</java.version>
     </properties>
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>stubuy-server</module>
+        <module>stubuy-commons</module>
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>
