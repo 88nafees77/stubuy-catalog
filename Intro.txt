@@ -1,0 +1,4 @@
+# stubuy-catalog
+StuBuy is a C2C platform that is created mainly for the college students
+Students that are new want to get the things like book,furniture,vehicle etc and final year student may want to get rid of such things
+So, we created this platform where a student can trade these things.
