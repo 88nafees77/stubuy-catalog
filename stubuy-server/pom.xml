@@ -3,14 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <dependencies>
-        <dependency>
-            <groupId>com.stubuy.catalog</groupId>
-            <artifactId>stubuy-commons</artifactId>
-            <version>0.0.1</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
     <parent>
         <groupId>com.stubuy.catalog</groupId>
         <artifactId>stubuy-catalog</artifactId>
@@ -19,4 +11,30 @@
     <artifactId>stubuy-server</artifactId>
     <name>stubuy-server</name>
     <description>stubuy-server</description>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.stubuy.catalog</groupId>
+            <artifactId>stubuy-commons</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

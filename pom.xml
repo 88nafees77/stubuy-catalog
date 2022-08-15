@@ -17,6 +17,7 @@
     <properties>
         <release.train.version>2021.0.3</release.train.version>
         <java.version>11</java.version>
+        <main.class>com.stubuy.catalog.StuBuyCatalogRun</main.class>
     </properties>
     <packaging>pom</packaging>
     <modules>
@@ -80,14 +81,5 @@
             <version>3.0.0</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

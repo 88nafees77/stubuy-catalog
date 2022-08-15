@@ -37,11 +37,15 @@ public class BookDatabaseServiceImp implements BookDatabaseService {
 	@Autowired
 	private CourseRepository courseRepository;
 
+	public BookDatabaseServiceImp() {
+	}
+
 	@Override
 	public BookRegisterResponse registerBook(BookRegisterRequest bookRegisterRequest) {
-		BranchEntity branchEntity = branchRepository.getReferenceById(bookRegisterRequest.getBranchId());
-		UniversityEntity universityEntity = universityRepository
-				.getReferenceById(bookRegisterRequest.getUniversityId());
+		BranchEntity branchEntity =
+				branchRepository.getReferenceById(bookRegisterRequest.getBranchId());
+		UniversityEntity universityEntity =
+				universityRepository.getReferenceById(bookRegisterRequest.getUniversityId());
 		BooksEntity bookEntity = BooksEntity.builder()
 				.userEntity(userRepository.getReferenceById(bookRegisterRequest.getUserId()))
 				.bookPrice(bookRegisterRequest.getBookPrice()).bookStatus(true)
